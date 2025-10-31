@@ -69,6 +69,24 @@ async function proxyRequest(
     const cookies = request.headers.get('cookie');
     if (cookies) {
       headers['Cookie'] = cookies;
+      
+      // Extrair access_token do cookie único do Supabase
+      // Formato: sb-<project-ref>-auth-token={"access_token":"...","refresh_token":"..."}
+      const authCookieMatch = cookies.match(/sb-[a-z0-9]+-auth-token=([^;]+)/);
+      if (authCookieMatch) {
+        try {
+          const decoded = decodeURIComponent(authCookieMatch[1]);
+          const authData = JSON.parse(decoded);
+          
+          if (authData.access_token) {
+            headers['Authorization'] = `Bearer ${authData.access_token}`;
+            console.log('[Proxy API] ✅ Added Authorization header from cookie');
+          }
+        } catch (e) {
+          console.error('[Proxy API] Failed to parse auth cookie:', e);
+        }
+      }
+      
       console.log('[Proxy API] Forwarding cookies:', cookies.substring(0, 100) + '...');
     } else {
       console.warn('[Proxy API] ⚠️ No cookies in request!');
