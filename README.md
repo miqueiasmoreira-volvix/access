@@ -1,4 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Access - Volvix
+
+Aplicação de gerenciamento de acesso do ecossistema Volvix.
+
+## Configuração
+
+**IMPORTANTE:** Antes de iniciar, configure as variáveis de ambiente:
+
+1. Copie o template de variáveis de ambiente:
+   ```bash
+   cp ENV_TEMPLATE.md .env.local
+   ```
+
+2. Edite o arquivo `.env.local` com as credenciais corretas
+3. Certifique-se de que a variável `NEXT_PUBLIC_API_URL` aponta para o backend correto
+
+Veja [ENV_TEMPLATE.md](./ENV_TEMPLATE.md) para mais detalhes.
 
 ## Getting Started
 

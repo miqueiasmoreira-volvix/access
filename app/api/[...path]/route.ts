@@ -71,8 +71,8 @@ async function proxyRequest(
       headers['Cookie'] = cookies;
       
       // Extrair access_token do cookie único do Supabase
-      // Formato: sb-<project-ref>-auth-token={"access_token":"...","refresh_token":"..."}
-      const authCookieMatch = cookies.match(/sb-[a-z0-9]+-auth-token=([^;]+)/);
+      // Formato: sb-<project-ref>-auth-token[.0]={"access_token":"...","refresh_token":"..."}
+      const authCookieMatch = cookies.match(/sb-[a-z0-9]+-auth-token(?:\.\d+)?=([^;]+)/);
       if (authCookieMatch) {
         try {
           const decoded = decodeURIComponent(authCookieMatch[1]);
