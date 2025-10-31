@@ -17,7 +17,11 @@ export async function http<T>(
     ...options.headers,
   };
 
-  const response = await fetch(url, { ...options, headers });
+  const response = await fetch(url, { 
+    ...options, 
+    headers,
+    credentials: 'include', // Envia cookies de autenticação
+  });
 
   const contentType = response.headers.get("content-type");
   const json = contentType?.includes("application/json")
