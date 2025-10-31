@@ -15,9 +15,9 @@ const buttonVariants = cva(
         ghost: 'text-neutral-300 dark:text-neutral-800'
       },
       size: {
-        md: 'h-10 text-sm px-4',
-        sm: 'h-9 text-base px-3',
-        lg: 'h-12 text-md px-6',
+        md: 'h-10 text-xs px-4',
+        sm: 'h-9 text-sm px-3',
+        lg: 'h-12 text-base px-6',
       },
       isIconOnly: {
         true: '',

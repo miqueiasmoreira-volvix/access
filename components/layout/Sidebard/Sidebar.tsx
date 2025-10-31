@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useSidebar } from "@/context/SidebarContext";
 import SidebarToggle from "./SidebarToggle";
 import { ThemeToggleButton } from "@/components/shared/ThemeToggle";
-import { Squares2X2Icon, FolderIcon, LinkIcon, QuestionMarkCircleIcon, Cog6ToothIcon } from "@heroicons/react/16/solid";
+import { Squares2X2Icon, UserCircleIcon, LockClosedIcon, InboxStackIcon, BuildingLibraryIcon, QuestionMarkCircleIcon, Cog6ToothIcon } from "@heroicons/react/16/solid";
 import SidebarButton from "@/components/shared/SidebarButton";
 
 export default function Sidebar() {
@@ -69,13 +69,50 @@ export default function Sidebar() {
                     <nav className="mt-4 flex h-fit w-full flex-col gap-2">
                         <SidebarButton
                             size="sm"
-                            href="/app/teste"
+                            href="/app/dashboard"
                             icon={<Squares2X2Icon className="w-4 h-4" />}
                             isCollapsed={!isSidebarOpen}
                             ariaLabel="Dashboard"
                         >
                             Dashboard
                         </SidebarButton>
+                        <SidebarButton
+                            size="sm"
+                            href="/app/users-management"
+                            icon={<UserCircleIcon className="w-4 h-4" />}
+                            isCollapsed={!isSidebarOpen}
+                            ariaLabel="Usuários"
+                        >
+                            Usuários
+                        </SidebarButton>
+                        <SidebarButton
+                            size="sm"
+                            href="/app/roles-management"
+                            icon={<LockClosedIcon className="w-4 h-4" />}
+                            isCollapsed={!isSidebarOpen}
+                            ariaLabel="Permissões"
+                        >
+                            Permissões
+                        </SidebarButton>
+                        <SidebarButton
+                            size="sm"
+                            href="/app/workspaces-management"
+                            icon={<InboxStackIcon className="w-4 h-4" />}
+                            isCollapsed={!isSidebarOpen}
+                            ariaLabel="Workspaces"
+                        >
+                            Workspaces
+                        </SidebarButton>
+                        <SidebarButton
+                            size="sm"
+                            href="/app/organization-management"
+                            icon={<BuildingLibraryIcon className="w-4 h-4" />}
+                            isCollapsed={!isSidebarOpen}
+                            ariaLabel="Organização"
+                        >
+                            Organização
+                        </SidebarButton>
+
                         
                     </nav>
                     <footer className="h-fit w-full">
