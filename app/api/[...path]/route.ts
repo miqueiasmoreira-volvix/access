@@ -53,6 +53,13 @@ async function proxyRequest(
     const targetPath = path.join('/');
     const targetUrl = `https://volvix.com.br/api/${targetPath}`;
     
+    // Debug: Log da requisição
+    console.log('[Proxy API] Request:', {
+      method,
+      targetUrl,
+      hasCookies: !!request.headers.get('cookie'),
+    });
+    
     // Copiar headers importantes
     const headers: HeadersInit = {
       'Content-Type': request.headers.get('content-type') || 'application/json',
@@ -62,6 +69,9 @@ async function proxyRequest(
     const cookies = request.headers.get('cookie');
     if (cookies) {
       headers['Cookie'] = cookies;
+      console.log('[Proxy API] Forwarding cookies:', cookies.substring(0, 100) + '...');
+    } else {
+      console.warn('[Proxy API] ⚠️ No cookies in request!');
     }
 
     // Preparar body se necessário
@@ -80,6 +90,13 @@ async function proxyRequest(
       headers,
       body,
       credentials: 'include',
+    });
+
+    // Debug: Log da response
+    console.log('[Proxy API] Response:', {
+      status: response.status,
+      statusText: response.statusText,
+      hasSetCookie: !!response.headers.get('set-cookie'),
     });
 
     // Copiar response body

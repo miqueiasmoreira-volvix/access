@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { debugCookies } from '@/lib/auth/checkAuth';
 import { SlidersHorizontal, Plus, MoreVertical, User, Trash2, ChevronDown } from 'lucide-react';
 import PrimaryButton from '@/components/shared/PrimaryButton';
 import OutlineButton from '@/components/shared/OutlineButton';
@@ -28,6 +29,11 @@ const IS_SUPER_ADMIN = CURRENT_USER_ROLE === 'ADMIN' && CURRENT_USER_COMPANY_ID 
 export default function UsersManagement() {
   const router = useRouter();
   const { users, isLoading, createUser, deleteUser } = useUsers();
+  
+  // Debug: Verificar cookies ao montar
+  useEffect(() => {
+    debugCookies();
+  }, []);
   
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
