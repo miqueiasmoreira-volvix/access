@@ -13,7 +13,7 @@
 export async function globalSignOut() {
   try {
     // 1. Chamar API de logout do volvix-front
-    await fetch('https://volvix.com.br/api/access/auth/sign-out', {
+    await fetch('/api/access/auth/sign-out', {
       method: 'POST',
       credentials: 'include',
     });

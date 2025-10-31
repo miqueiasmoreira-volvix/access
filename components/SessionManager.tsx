@@ -15,7 +15,7 @@ export default function SessionManager() {
 
   const refreshSession = async () => {
     try {
-      const response = await fetch('https://volvix.com.br/api/access/auth/session/refresh', {
+      const response = await fetch('/api/access/auth/session/refresh', {
         method: 'POST',
         credentials: 'include', // Importante para enviar cookies
       });

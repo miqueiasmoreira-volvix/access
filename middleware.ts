@@ -70,7 +70,7 @@ export async function middleware(request: NextRequest) {
       loginUrl.searchParams.set('redirect', currentUrl);
     } else {
       // Se URL inválida, usar apenas o path
-      loginUrl.searchParams.set('redirect', `https://syncro.volvix.com.br${request.nextUrl.pathname}`);
+      loginUrl.searchParams.set('redirect', `https://access.volvix.com.br${request.nextUrl.pathname}`);
     }
     
     return NextResponse.redirect(loginUrl);
@@ -81,6 +81,14 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    /*
+     * Match all request paths except:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - images (svg, png, jpg, jpeg, gif, webp)
+     * - api routes (to allow proxy to work)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };
